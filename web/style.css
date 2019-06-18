@@ -1,0 +1,21 @@
+table
+{
+    border-collapse: collapse;
+    empty-cells: hide;
+}
+ table.center
+ {
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+td, th /* Mettre une bordure sur les td ET les th */
+{
+    border: 1px solid black;
+	text-align: center;
+}
+
+td:empty {
+  border: 0px solid black;
+}
+

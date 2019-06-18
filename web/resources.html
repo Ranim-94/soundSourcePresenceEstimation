@@ -1,0 +1,261 @@
+<!doctype html>
+<html ng-app="explanes">
+<body>
+
+<h2>Sample simulated sound scenes per ambiance</h2>
+
+<p>Below are a few examples from of simulated sound scenes using simScene. During the experiment each scene is played at the specified sound level, chosen semi-randomly to cover real-life conditions. For each scene the perceptual time of presence of sources (T: Traffic, V: Voices, B: Birds) can be estimated from the separated source-specific channels obtained during simulation.</br> 
+
+The full perceptual experiment corpus can be found <a href="https://">here</a>.</p>
+
+<table align="center">
+  <tr>
+    <th>Scene name</th>
+    <th>Ambiance</th>
+    <th>Audio</th>
+    <th>Playback Leq (dB)</th>
+    <th>T<sub>T</sub>(&alpha;, &beta;)</th>
+    <th>T<sub>V</sub>(&alpha;, &beta;)</th>
+    <th>T<sub>B</sub>(&alpha;, &beta;)</th>
+  </tr>
+  <tr>
+    <td>park03</td>
+    <td>Park</td>
+    <td><audio controls><source src="audio/park03.wav" /></audio></td>
+    <td>46.6</td>
+    <td>0.00</td>
+    <td>1.00</td>
+    <td>1.00</td>
+  </tr>
+  <tr>
+    <td>quietStreet03</td>
+    <td>Quiet Street</td>
+    <td><audio controls><source src="audio/quietStreet03.wav" /></audio></td>
+    <td>50.6</td>
+    <td>1.00</td>
+    <td>0.07</td>
+    <td>0.23</td>
+  </tr>
+  <tr>
+    <td>noisyStreet01</td>
+    <td>Noisy Street</td>
+    <td><audio controls><source src="audio/noisyStreet01.wav" /></audio></td>
+    <td>70.0</td>
+    <td>1.00</td>
+    <td>0.86</td>
+    <td>0.05</td>
+  </tr>
+  <tr>
+    <td>veryNoisyStreet26</td>
+    <td>Very Noisy Street</td>
+    <td><audio controls><source src="audio/veryNoisyStreet26.wav" /></audio></td>
+    <td>74.5</td>
+    <td>1.00</td>
+    <td>0.00</td>
+    <td>0.26</td>
+  </tr>
+  <tr>
+    <td>place03</td>
+    <td>Square</td>
+    <td><audio controls><source src="audio/place03.wav" /></audio></td>
+    <td>66.0</td>
+    <td>0.37</td>
+    <td>0.98</td>
+    <td>0.07</td>
+  </tr>
+</table>
+
+<hr>
+<h2>Principal components analysis for recorded and replicated sound scenes</h2>
+
+<p>This table compares the perceptual response between recorded sound scenes and corresponding replicated scenes. The scores shown are the mean and standard deviation of assessments over 23 subjects, with evaluations on a 0-10 Likert scale. Principal component analysis (PCA) plots outline the differences between pairs in the perceptual space resulting from the experiment. Ellipses represent the standard deviations of the participants assessments.</p>
+
+<table class="center">
+  <tr>
+    <th>Location</th>
+    <th>Type</th>
+    <th>Audio</th>
+	<th>Pleasantness (P)</th>
+	<th>Liveliness (L)</th>
+	<th>Overall loudness (OL)</th>
+	<th>Interest (I)</th>
+	<th>Calmness (C)</th>
+	<th>Level of passing vehicles (L<sub>T, p</sub>)</th>
+	<th>Time of presence of traffic (T<sub>T, p</sub>)</th>
+	<th>Time of presence of voices (T<sub>V, p</sub>)</th>
+	<th>Time of presence of birds (T<sub>B, p</sub>)</th>
+	<th>PCA</th>
+  </tr>
+  <tr>
+    <td rowspan="2">P1</td>
+    <td>Recorded</td>
+    <td><audio controls><source src="audio/2_EW_01.wav" /></audio></td>
+    <td>4.43 (&plusmn;1.50)</td>
+    <td>5.17 (&plusmn;2.31)</td>
+    <td>5.74 (&plusmn;1.63)</td>
+    <td>4.35 (&plusmn;2.42)</td>
+    <td>5.00 (&plusmn;1.98)</td>
+    <td>4.83 (&plusmn;1.75)</td>
+    <td>8.17 (&plusmn;2.27)</td>
+    <td>4.70 (&plusmn;2.34)</td>
+    <td>1.39 (&plusmn;1.27)</td>
+    <td rowspan="2"><img src="figures/pca_p1.png" alt="P1" style=""></td>
+  </tr>
+  <tr>
+    <td>Replicated</td>
+    <td><audio controls><source src="audio/replicateNoisyStreet_2_EW_01.wav" /></audio></td>
+	<td>4.00 (&plusmn;1.54)</td>
+    <td>6.83 (&plusmn;1.47)</td>
+    <td>6.78 (&plusmn;1.09)</td>
+    <td>3.91 (&plusmn;2.02)</td>
+    <td>4.87 (&plusmn;1.84)</td>
+    <td>5.74 (&plusmn;1.79)</td>
+    <td>7.78 (&plusmn;2.37)</td>
+    <td>6.78 (&plusmn;2.84)</td>
+    <td>0.78 (&plusmn;1.68)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">P3</td>
+    <td>Recorded</td>
+    <td><audio controls><source src="audio/2_EW_03.wav" /></audio></td>
+    <td>7.91 (&plusmn;1.24)</td>
+    <td>4.26 (&plusmn;2.24)</td>
+    <td>4.00 (&plusmn;1.45)</td>
+    <td>5.00 (&plusmn;1.86)</td>
+    <td>8.04 (&plusmn;1.40)</td>
+    <td>0.91 (&plusmn;1.28)</td>
+    <td>2.70 (&plusmn;3.15)</td>
+    <td>3.09 (&plusmn;2.11)</td>
+    <td>9.70 (&plusmn;0.70)</td>
+    <td rowspan="2"><img src="figures/pca_p3.png" alt="P1" style=""></td>
+  </tr>
+  <tr>
+    <td>Replicated</td>
+    <td><audio controls><source src="audio/replicatePark_2_EW_03.wav" /></audio></td>
+	<td>7.65 (&plusmn;2.23)</td>
+    <td>4.70 (&plusmn;2.75)</td>
+    <td>3.70 (&plusmn;1.82)</td>
+    <td>6.00 (&plusmn;1.95)</td>
+    <td>7.74 (&plusmn;2.16)</td>
+    <td>0.57 (&plusmn;0.84)</td>
+    <td>1.65 (&plusmn;2.01)</td>
+    <td>7.09 (&plusmn;2.78)</td>
+    <td>9.48 (&plusmn;1.12)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">P4</td>
+    <td>Recorded</td>
+    <td><audio controls><source src="audio/2_EW_04.wav" /></audio></td>
+    <td>6.22 (&plusmn;2.11)</td>
+    <td>4.74 (&plusmn;2.43)</td>
+    <td>3.09 (&plusmn;1.78)</td>
+    <td>4.13 (&plusmn;2.67)</td>
+    <td>7.61 (&plusmn;1.73)</td>
+    <td>3.00 (&plusmn;1.51)</td>
+    <td>2.87 (&plusmn;1.82)</td>
+    <td>6.17 (&plusmn;1.56)</td>
+    <td>0.35 (&plusmn;0.93)</td>
+    <td rowspan="2"><img src="figures/pca_p4.png" alt="P1" style=""></td>
+  </tr>
+  <tr>
+    <td>Replicated</td>
+    <td><audio controls><source src="audio/replicateQuietStreet_2_EW_04.wav" /></audio></td>
+	<td>5.30 (&plusmn;1.64)</td>
+    <td>4.74 (&plusmn;1.84)</td>
+    <td>4.91 (&plusmn;1.81)</td>
+    <td>3.65 (&plusmn;2.44)</td>
+    <td>6.30 (&plusmn;1.77)</td>
+    <td>3.96 (&plusmn;1.69)</td>
+    <td>8.09 (&plusmn;2.19)</td>
+    <td>4.74 (&plusmn;2.28)</td>
+    <td>0.30 (&plusmn;1.06)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">P8</td>
+    <td>Recorded</td>
+    <td><audio controls><source src="audio/2_EW_08.wav" /></audio></td>
+    <td>5.87 (&plusmn;1.82)</td>
+    <td>3.22 (&plusmn;2.04)</td>
+    <td>4.04 (&plusmn;1.49)</td>
+    <td>3.35 (&plusmn;2.31)</td>
+    <td>7.17 (&plusmn;1.83)</td>
+    <td>3.04 (&plusmn;1.52)</td>
+    <td>7.48 (&plusmn;2.97)</td>
+    <td>2.70 (&plusmn;2.34)</td>
+    <td>2.61 (&plusmn;2.35)</td>
+    <td rowspan="2"><img src="figures/pca_p8.png" alt="P1" style=""></td>
+  </tr>
+  <tr>
+    <td>Replicated</td>
+    <td><audio controls><source src="audio/replicateNoisyStreet_2_EW_08.wav" /></audio></td>
+	<td>5.61 (&plusmn;1.97)</td>
+    <td>4.87 (&plusmn;2.65)</td>
+    <td>4.91 (&plusmn;1.86)</td>
+    <td>4.30 (&plusmn;2.55)</td>
+    <td>6.52 (&plusmn;1.70)</td>
+    <td>5.09 (&plusmn;2.02)</td>
+    <td>8.39 (&plusmn;2.44)</td>
+    <td>2.61 (&plusmn;1.34)</td>
+    <td>4.04 (&plusmn;2.08)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">P15</td>
+    <td>Recorded</td>
+    <td><audio controls><source src="audio/2_EW_15.wav" /></audio></td>
+    <td>1.70 (&plusmn;1.22)</td>
+    <td>7.30 (&plusmn;2.10)</td>
+    <td>8.52 (&plusmn;0.99)</td>
+    <td>1.96 (&plusmn;1.40)</td>
+    <td>3.04 (&plusmn;1.64)</td>
+    <td>8.52 (&plusmn;1.04)</td>
+    <td>9.74 (&plusmn;0.62)</td>
+    <td>2.78 (&plusmn;2.73)</td>
+    <td>0.09 (&plusmn;0.42)</td>
+    <td rowspan="2"><img src="figures/pca_p15.png" alt="P1" style=""></td>
+  </tr>
+  <tr>
+    <td>Replicated</td>
+    <td><audio controls><source src="audio/replicateVeryNoisyStreet_2_EW_15.wav" /></audio></td>
+	<td>3.04 (&plusmn;2.60)</td>
+    <td>6.78 (&plusmn;1.76)</td>
+    <td>8.00 (&plusmn;1.81)</td>
+    <td>3.13 (&plusmn;2.53)</td>
+    <td>2.96 (&plusmn;1.11)</td>
+    <td>7.91 (&plusmn;1.68)</td>
+    <td>9.61 (&plusmn;0.89)</td>
+    <td>0.83 (&plusmn;1.59)</td>
+    <td>2.83 (&plusmn;3.19)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">P18</td>
+    <td>Recorded</td>
+    <td><audio controls><source src="audio/2_EW_18.wav" /></audio></td>
+    <td>5.48 (&plusmn;2.25)</td>
+    <td>7.70 (&plusmn;1.99)</td>
+    <td>6.17 (&plusmn;1.61)</td>
+    <td>5.52 (&plusmn;2.06)</td>
+    <td>4.48 (&plusmn;2.11)</td>
+    <td>5.35 (&plusmn;2.71)</td>
+    <td>6.22 (&plusmn;3.18)</td>
+    <td>9.17 (&plusmn;1.15)</td>
+    <td>1.70 (&plusmn;1.92)</td>
+    <td rowspan="2"><img src="figures/pca_p18.png" alt="P1" style=""></td>
+  </tr>
+  <tr>
+    <td>Replicated</td>
+    <td><audio controls><source src="audio/replicateVeryNoisyStreet_2_EW_18.wav" /></audio></td>
+	<td>4.35 (&plusmn;2.19)</td>
+    <td>8.00 (&plusmn;1.41)</td>
+    <td>7.35 (&plusmn;1.43)</td>
+    <td>5.96 (&plusmn;2.12)</td>
+    <td>3.09 (&plusmn;2.35)</td>
+    <td>6.39 (&plusmn;1.59)</td>
+    <td>8.04 (&plusmn;1.64)</td>
+    <td>8.35 (&plusmn;1.43)</td>
+    <td>0.39 (&plusmn;0.66)</td>
+  </tr>
+</table>
+
+
+</body>
+</html>
