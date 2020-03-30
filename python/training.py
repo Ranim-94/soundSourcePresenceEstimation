@@ -8,6 +8,7 @@ import time
 import math
 import csv
 import numpy as np
+import os
 
 class PresPredTrainer:
     def __init__(self, model, train_dataset, test_dataset=None, optimizer=optim.Adam, lr=0.001):
@@ -37,9 +38,9 @@ class PresPredTrainer:
                     
                 self.optimizer.zero_grad()
                 loss.backward()
-                loss = loss.data[0]
+                loss = loss.data
                 tqdm.write('Loss is {:.4f}'.format(loss))
-                losses.append(loss)
+                losses.append(loss.cpu().numpy())
 
                 self.optimizer.step()
             self.dataloader.dataset.train = 0
@@ -54,21 +55,24 @@ class PresPredTrainer:
 
                 loss = F.binary_cross_entropy_with_logits(o, torch.squeeze(p))
                     
-                loss_val = loss_val + loss.data[0]
+                loss_val = loss_val + loss.data
             loss_val = loss_val/len(self.dataloader)
-            losses_val.append(loss_val)
+            losses_val.append(loss_val.cpu().numpy())
             print(" => Validation loss at epoch {} is {:.4f}".format(current_epoch, loss_val))
         if epochs>0:
             time_string = time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime())
-            torch.save(self.model, 'save/' + 'model_' + time_string)
+            if not os.path.exists('save/'):
+                os.makedirs('save')
+            
+            torch.save(self.model, os.path.join('save', 'model_' + time_string + '.pt'))
             with open('loss.txt', 'a') as lf:
                 writer = csv.writer(lf)
                 for l in losses:
-                    writer.writerow([round(l*10000)/10000])
+                    writer.writerow([np.round(l*10000)/10000])
             with open('loss_val.txt', 'w') as lf:
                 writer = csv.writer(lf)
                 for l in losses_val:
-                    writer.writerow([round(l*10000)/10000])
+                    writer.writerow([np.round(l*10000)/10000])
 
     def test(self, batch_size=32):
         self.dataloader = torch.utils.data.DataLoader(self.test_dataset, batch_size=batch_size, shuffle=False, num_workers=8, pin_memory=False)
@@ -76,23 +80,23 @@ class PresPredTrainer:
         
         mse_t_pres_val = 0
         # All sources
-        pres_acc = 0
-        n_ex = 0
-        tp = 0
-        tn = 0
-        fp = 0
-        fn = 0
-        n_p = 0
-        n_n = 0
+        pres_acc = float(0)
+        n_ex = float(0)
+        tp = float(0)
+        tn = float(0)
+        fp = float(0)
+        fn = float(0)
+        n_p = float(0)
+        n_n = float(0)
         # Source specific
-        pres_acc_s = 0
-        n_ex_s = 0
-        tp_s = 0
-        tn_s = 0
-        fp_s = 0
-        fn_s = 0
-        n_p_s = 0
-        n_n_s = 0
+        pres_acc_s = float(0)
+        n_ex_s = float(0)
+        tp_s = float(0)
+        tn_s = float(0)
+        fp_s = float(0)
+        fn_s = float(0)
+        n_p_s = float(0)
+        n_n_s = float(0)
         
         for current_batch, (x, p) in enumerate(tqdm(self.dataloader, desc='Test')):
             x = Variable(x.type(torch.FloatTensor))
@@ -139,6 +143,7 @@ class PresPredTrainer:
         print(" => All sources estimated PTP MSE is {:.4f} (RMSE is {:.4f})".format(torch.mean(mse_t_pres_val), math.sqrt(torch.mean(mse_t_pres_val))))
         # All sources
         pres_acc = pres_acc/n_ex
+        print(tp)
         tp = tp/n_p
         tn = tn/n_n
         fp = fp/n_n
@@ -171,11 +176,11 @@ class PresPredTrainer:
             
             pres_pred = o.round().cpu().data
             t_pres_pred = torch.mean(pres_pred, dim=0)
-            t_pres_preds.append(t_pres_pred)
+            t_pres_preds.append(t_pres_pred.cpu().numpy())
         with open(dataset_name+'_pred.txt', 'w') as pf:
             writer = csv.writer(pf)
             for tp in t_pres_preds:
-                writer.writerow([round(t*10000)/10000 for t in tp])
+                writer.writerow([np.round(t*10000)/10000 for t in tp])
             
             
             

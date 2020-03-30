@@ -55,21 +55,21 @@ class PresPredDataset(torch.utils.data.Dataset):
             n_f = int(np.floor(x.shape[0]/f_len))
             
             # Presence profile
-            with open(pres_files[i]+'_pp2_T.csv', newline='') as csvfile:
+            with open(pres_files[i]+'_pp_T.csv', newline='') as csvfile:
                 csvreader = csv.reader(csvfile, delimiter=',')
                 for row in csvreader:
                     x_pres_T = [[float(l) for l in row]]
                 if len(x_pres_T[0]) != n_f:
                     for indf in range(n_f-len(x_pres_T[0])):
                         x_pres_T[0].append(float(0))
-            with open(pres_files[i]+'_pp2_V.csv', newline='') as csvfile:
+            with open(pres_files[i]+'_pp_V.csv', newline='') as csvfile:
                 csvreader = csv.reader(csvfile, delimiter=',')
                 for row in csvreader:
                     x_pres_V = [[float(l) for l in row]]
                 if len(x_pres_V[0]) != n_f:
                     for indf in range(n_f-len(x_pres_V[0])):
                         x_pres_V[0].append(float(0))
-            with open(pres_files[i]+'_pp2_B.csv', newline='') as csvfile:
+            with open(pres_files[i]+'_pp_B.csv', newline='') as csvfile:
                 csvreader = csv.reader(csvfile, delimiter=',')
                 for row in csvreader:
                     x_pres_B = [[float(l) for l in row]]
